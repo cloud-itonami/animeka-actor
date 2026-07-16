@@ -117,3 +117,11 @@ grant + governor escalation 境界）に拡張し、本 ADR に addendum を積�
   minidrama ADR-0001 の完了形と同型）。
 - superproject west / fleet-db 登録は親セッションが実施（本 repo からは
   manifest に触らない）。
+
+## 追記 (2026-07-16): org 移設 — etzhayyim/com-etzhayyim-animeka → gftdcojp/animeka-actor
+
+オーナー指示により gftdcojp org へ transfer(rename、visibility は org 既定の
+private)。**lexicon NSID(`com.etzhayyim.apps.*`)は既に PDS 上の実 record が
+使っている wire 識別子のため変更しない**(repo のホスト org と lexicon
+namespace は独立 — aozora identity は etzhayyim-rooted のまま)。GitHub の旧
+URL は redirect が残る。

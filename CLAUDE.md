@@ -1,4 +1,4 @@
-# com-etzhayyim-animeka
+# animeka-actor
 
 animeka (アニメ家) — AI アニメーションクリップ制作 actor。core contract は
 `README.md`、pattern は full-repo `../../../CLAUDE.md` "Actors" 節
