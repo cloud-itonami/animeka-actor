@@ -1,4 +1,4 @@
-# com-etzhayyim-animeka (アニメ家)
+# animeka-actor (アニメ家)
 
 縦型（720x1280）30〜60 秒 **AI アニメクリップ**の制作 actor。企画 → 絵コンテ
 （shot list、prompt は "anime style, …"）までを AnimeLLM が *proposal* として
