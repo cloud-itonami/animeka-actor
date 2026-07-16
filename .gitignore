@@ -1,0 +1,6 @@
+.cpcache/
+.nrepl-port
+/target
+/classes
+# the actor's own Ed25519 identity + produced work orders — never commit a private key
+.animeka/
