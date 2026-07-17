@@ -125,3 +125,35 @@ private)。**lexicon NSID(`com.etzhayyim.apps.*`)は既に PDS 上の実 record 
 使っている wire 識別子のため変更しない**(repo のホスト org と lexicon
 namespace は独立 — aozora identity は etzhayyim-rooted のまま)。GitHub の旧
 URL は redirect が残る。
+
+## 追記 (2026-07-17): engine-hold 部分解除 — murakumo fleet ltx-2.3 への直接 dispatch
+
+**ai-gftd-animeka の plan→mp4 CLI 不在という HOLD 条件そのものは不変**（この
+repo からは一切触っていない）。代わりに、murakumo fleet 自身の汎用 :video
+モデル ltx-2.3（`gftdcojp/cloud-murakumo` resources/murakumo.edn、
+ADR-2607171330 owner 決定: :video 第一経路は fleet self-hosted OSS）を
+ComfyUI HTTP 経由で直接叩く `animekaza.engine` を新設した。
+
+- **根拠**: superproject `90-docs/gen-quality/` の実測（2026-07-17）で、
+  clips/*.edn の shot prompt（既に `"anime style, …"` 接頭辞付き）を
+  ltx-2.3 の単段 t2v グラフにそのまま渡すと実生成に成功し、composite
+  スコア 0.71（baseline placeholder 0.502 を上回る、実写プロンプト版の
+  0.714 とほぼ同水準）。これは**この actor の中に生成を実装している
+  わけではない** — dougaka が自分のエンジン repo を呼ぶのと同じ形で、
+  murakumo fleet という既存の共有サービスを呼んでいるだけ（CLAUDE.md
+  「3D はすべて kami-engine」節と同種の「新規エンジンを書かず既存を
+  再利用する」原則）。
+- **opt-in・fail-closed**: `ANIMEKA_COMFY_URL` 環境変数が無ければ
+  `animekaza.engine/submit-clip!` は例外を投げ、outer loop は**従来どおり
+  `"held"`/`engine-hold` で escalate**（挙動不変。registry cadence も
+  依然 `:active? false`）。設定時のみ produce → engine → announce の
+  full chain が動く。engine 例外は `"held"`/`engine-error` として記録され、
+  フェイク生成にフォールバックしない。
+- **live 検証**（2026-07-17、gad 経由、governor は design-advisor で
+  実クリップ設計を検閲・commit）: `produce/produce-plan!` → 
+  `engine/submit-clip!` の実 chain を実行し 301KB mp4 を実際に生成、
+  決定論スコア composite 0.71 を確認。
+- **未実施**: registry cadence flip（owner 判断）、実 tick 駆動での
+  end-to-end（tick が無いと run-once! は :idle のまま — cadence flip 後に
+  初検証）、実 announce・PDS 公開（今回は engine leg のみの smoke test、
+  生成物は commit していない）。
