@@ -15,9 +15,12 @@
          clojure -M:dev -m animekaza.deploy register-handle
          clojure -M:dev -m animekaza.deploy create-account
   Env:   ANIMEKA_OLLAMA_URL (default http://127.0.0.1:11434)
-         ANIMEKA_OLLAMA_MODEL (default gemma-4-E4B qat)"
+         ANIMEKA_OLLAMA_MODEL (default gemma-4-E4B qat)
+         KOTOBA_REPOSITORY_STATE_FILE (required editable state.edn)
+         KOTOBA_REPOSITORY_STREAM (optional; default actor/animeka)"
   (:require [clojure.data.json :as json]
             [clojure.string :as str]
+            [langchain.edn-persist :as edn-persist]
             [langchain.model :as model]
             [langgraph.graph :as g]
             [animekaza.advisor :as advisor]
@@ -137,7 +140,8 @@
   (let [[theme dur] (if (seq args) args ["桜と始発電車" nil])
         chat    (ollama-chat-model)
         adv     (advisor/llm-advisor chat {:max-tokens 1024})
-        s       (store/seed-db)
+        s       (store/datomic-store
+                 (edn-persist/required-persist-from-env "actor/animeka"))
         pub     (publisher/mock-publisher)
         actor   (op/build s {:advisor adv :publisher pub})
         cid     "deploy-1"
