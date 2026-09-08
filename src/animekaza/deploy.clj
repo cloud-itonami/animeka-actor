@@ -18,7 +18,8 @@
          ANIMEKA_OLLAMA_MODEL (default gemma-4-E4B qat)
          KOTOBA_REPOSITORY_STATE_FILE (required editable state.edn)
          KOTOBA_REPOSITORY_STREAM (optional; default actor/animeka)"
-  (:require [clojure.data.json :as json]
+  (:require [kotoba.net.jvm-host :as jvm-host]
+            [clojure.data.json :as json]
             [clojure.string :as str]
             [langchain.edn-persist :as edn-persist]
             [langchain.model :as model]
@@ -42,17 +43,10 @@
       "hf.co/unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL"))
 
 (defn jvm-http-fn
-  "langchain.model :http-fn backed by the JDK HTTP client (no dependency)."
+  "Delegated to kotoba.net.jvm-host (the workspace's single java.net.http site)."
   [{:keys [url method headers body]}]
-  (let [b (HttpRequest/newBuilder (URI/create url))]
-    (doseq [[k v] headers] (.header b k v))
-    (let [req  (-> b (.method (str/upper-case (name (or method :post)))
-                             (if body
-                               (HttpRequest$BodyPublishers/ofString body)
-                               (HttpRequest$BodyPublishers/noBody)))
-                   (.build))
-          resp (.send (HttpClient/newHttpClient) req (HttpResponse$BodyHandlers/ofString))]
-      {:status (.statusCode resp) :body (.body resp)})))
+  ((jvm-host/http-transport {:timeout-seconds 120})
+   {:url url :method (or method :post) :headers headers :body body}))
 
 (defn ollama-chat-model
   "Build a langchain.model/openai-model against a Murakumo-fleet Ollama.

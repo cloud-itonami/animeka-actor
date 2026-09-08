@@ -23,23 +23,19 @@
   (tick still consumed as \"held\"/engine-hold). No silent fallback either
   direction."
   (:require [clojure.data.json :as json]
+            [kotoba.net.jvm-host :as jvm-host]
             [clojure.java.io :as io]
             [clojure.string :as str])
-  (:import [java.net URI]
-           [java.net.http HttpClient HttpRequest HttpRequest$BodyPublishers
-            HttpResponse$BodyHandlers]))
+  )
 
 (def ckpt "ltx-2.3-22b-distilled-fp8.safetensors")
 (def text-encoder "gemma_3_12B_it_fp4_mixed.safetensors")
 
 (defn- http [{:keys [url method body]}]
-  (let [b (HttpRequest/newBuilder (URI/create url))]
-    (-> b (.header "content-type" "application/json")
-        (.method (str/upper-case (name (or method :get)))
-                 (if body (HttpRequest$BodyPublishers/ofString body)
-                     (HttpRequest$BodyPublishers/noBody))))
-    (let [resp (.send (HttpClient/newHttpClient) (.build b) (HttpResponse$BodyHandlers/ofString))]
-      {:status (.statusCode resp) :body (.body resp)})))
+  ;; delegated to kotoba.net.jvm-host
+  ((jvm-host/http-transport {:timeout-seconds 180})
+   {:url url :method (or method :get) :headers {"content-type" "application/json"}
+    :body body}))
 
 (defn- comfy-url []
   (or (System/getenv "ANIMEKA_COMFY_URL")
