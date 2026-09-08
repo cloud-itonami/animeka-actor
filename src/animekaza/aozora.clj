@@ -18,28 +18,19 @@
   gate (animekaza.operation) — phase 2 public requires a :publish or
   :auto-publish grant (ADR-2607162200 Layer D)."
   (:require [clojure.string :as str]
+            [kotoba.net.jvm-host :as jvm-host]
             [animekaza.cacao :as cacao]
             [animekaza.publisher :as publisher])
-  (:import [java.net URI]
-           [java.net.http HttpClient HttpRequest HttpRequest$BodyPublishers
-            HttpResponse$BodyHandlers]
-           [java.time Instant]
+  (:import [java.time Instant]
            [java.util UUID]))
 
 (def default-pds "https://pds.aozora.app")
 
 (defn jvm-http-fn
-  "host-caps :http-fn backed by the JDK HTTP client (no dependency)."
+  "Delegated to kotoba.net.jvm-host (the workspace's single java.net.http site)."
   [{:keys [url method headers body]}]
-  (let [b (HttpRequest/newBuilder (URI/create url))]
-    (doseq [[k v] headers] (.header b k v))
-    (let [req  (-> b (.method (str/upper-case (name (or method :post)))
-                             (if body
-                               (HttpRequest$BodyPublishers/ofString body)
-                               (HttpRequest$BodyPublishers/noBody)))
-                   (.build))
-          resp (.send (HttpClient/newHttpClient) req (HttpResponse$BodyHandlers/ofString))]
-      {:status (.statusCode resp) :body (.body resp)})))
+  ((jvm-host/http-transport {:timeout-seconds 120})
+   {:url url :method (or method :post) :headers headers :body body}))
 
 (defn session-jwt!
   "app-aozora-pds auth (self-sovereign CACAO, ADR-2606251700): mint a CACAO
