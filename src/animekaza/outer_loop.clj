@@ -33,7 +33,7 @@
                              — unset = engine-hold unchanged (opt-in)"
   (:require [clojure.data.json :as json]
             [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [animekaza.announce :as announce]
             [animekaza.aozora :as aozora]
             [animekaza.cacao :as cacao]
