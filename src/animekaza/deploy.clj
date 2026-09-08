@@ -20,7 +20,7 @@
          KOTOBA_REPOSITORY_STREAM (optional; default actor/animeka)"
   (:require [kotoba.net.jvm-host :as jvm-host]
             [clojure.data.json :as json]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [langchain.edn-persist :as edn-persist]
             [langchain.model :as model]
             [langgraph.graph :as g]

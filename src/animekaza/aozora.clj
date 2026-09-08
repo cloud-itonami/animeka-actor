@@ -17,7 +17,7 @@
   ANNOUNCEMENT here still sits behind the AnimekaGovernor + phase/approval
   gate (animekaza.operation) — phase 2 public requires a :publish or
   :auto-publish grant (ADR-2607162200 Layer D)."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kotoba.net.jvm-host :as jvm-host]
             [animekaza.cacao :as cacao]
             [animekaza.publisher :as publisher])
