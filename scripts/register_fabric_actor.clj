@@ -1,6 +1,6 @@
 (require '[animekaza.aozora :as aozora]
          '[animekaza.cacao :as cacao]
-         '[clojure.data.json :as json])
+         '[json.data-json :as json])
 
 (let [identity (cacao/load-or-create-identity! ".animeka/identity.edn")
       handle (or (System/getenv "AOZORA_ACTOR_HANDLE") "animeka-organism.aozora.app")

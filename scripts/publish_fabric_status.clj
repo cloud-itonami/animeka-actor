@@ -1,7 +1,7 @@
 (require '[animekaza.aozora :as aozora]
          '[animekaza.cacao :as cacao]
          '[animekaza.publisher :as publisher]
-         '[clojure.data.json :as json])
+         '[json.data-json :as json])
 
 (let [identity (cacao/load-or-create-identity! ".animeka/identity.edn")
       client (aozora/aozora-publisher {:pds aozora/default-pds
