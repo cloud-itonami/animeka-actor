@@ -22,7 +22,7 @@
   calls this when the env var is present; absent it, behavior is UNCHANGED
   (tick still consumed as \"held\"/engine-hold). No silent fallback either
   direction."
-  (:require [clojure.data.json :as json]
+  (:require [json.data-json :as json]
             [kotoba.net.jvm-host :as jvm-host]
             [clojure.java.io :as io]
             [kotoba.lang.text :as str])

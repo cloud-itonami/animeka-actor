@@ -19,7 +19,7 @@
          KOTOBA_REPOSITORY_STATE_FILE (required editable state.edn)
          KOTOBA_REPOSITORY_STREAM (optional; default actor/animeka)"
   (:require [kotoba.net.jvm-host :as jvm-host]
-            [clojure.data.json :as json]
+            [json.data-json :as json]
             [kotoba.lang.text :as str]
             [langchain.edn-persist :as edn-persist]
             [langchain.model :as model]
