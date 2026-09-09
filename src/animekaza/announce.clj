@@ -15,7 +15,7 @@
 
   Usage: clojure -M:dev -m animekaza.announce <clip.mp4> [clip-id] [title]"
   (:require [kotoba.net.jvm-host :as jvm-host]
-            [clojure.data.json :as json]
+            [json.data-json :as json]
             [clojure.java.io :as io]
             [animekaza.aozora :as aozora]
             [animekaza.cacao :as cacao]

@@ -62,13 +62,13 @@
   the aozora PDS. opts:
     :pds         PDS base URL (default default-pds)
     :identity    {:private-key :did …} from cacao/load-or-create-identity!
-    :json-write  :json-read  injected JSON fns (e.g. clojure.data.json)
+    :json-write  :json-read  injected JSON fns (e.g. json.data-json)
     :http-fn     optional override (default jvm-http-fn)"
   [{:keys [pds identity json-write json-read http-fn]
     :or   {pds default-pds http-fn jvm-http-fn}}]
   (assert (:did identity) ":identity with :did is required (cacao/load-or-create-identity!)")
-  (assert json-write ":json-write fn is required (e.g. clojure.data.json/write-str)")
-  (assert json-read  ":json-read fn is required (e.g. clojure.data.json/read-str)")
+  (assert json-write ":json-write fn is required (e.g. json.data-json/write-str)")
+  (assert json-read  ":json-read fn is required (e.g. json.data-json/read-str)")
   (reify publisher/Publisher
     (publish! [_ record]
       (let [now (str (Instant/now))

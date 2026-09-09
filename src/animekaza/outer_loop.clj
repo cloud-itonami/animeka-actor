@@ -31,7 +31,7 @@
                              ADR-2607162200 scheduled operation)
          ANIMEKA_COMFY_URL   gad ComfyUI base (e.g. http://<tailnet-ip>:8188)
                              — unset = engine-hold unchanged (opt-in)"
-  (:require [clojure.data.json :as json]
+  (:require [json.data-json :as json]
             [clojure.java.io :as io]
             [kotoba.lang.text :as str]
             [animekaza.announce :as announce]
