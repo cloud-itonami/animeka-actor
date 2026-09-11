@@ -25,8 +25,8 @@
   AnimekaGovernor escalation boundary; any engine error still HOLDs the tick
   (no silent fallback either direction).
 
-  Usage: clojure -M:dev -m animekaza.outer-loop            run once
-         clojure -M:dev -m animekaza.outer-loop status     ticks + consumption
+  Usage: kbb -M:dev -m animekaza.outer-loop            run once
+         kbb -M:dev -m animekaza.outer-loop status     ticks + consumption
   Env:   ANIMEKA_PHASE       0 draft / 1 unlisted / 2 public (default 2 —
                              ADR-2607162200 scheduled operation)
          ANIMEKA_COMFY_URL   gad ComfyUI base (e.g. http://<tailnet-ip>:8188)
