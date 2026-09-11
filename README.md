@@ -74,22 +74,22 @@ SOFT → commit + タグ: `:low-confidence`
 ## Run
 
 ```bash
-clojure -M:lint       # clj-kondo (errors fail)
-clojure -M:dev:test   # cognitect test-runner
-clojure -M:dev:run    # offline demo (mock advisor/publisher, MemStore)
+kbb -M:lint       # clj-kondo (errors fail)
+kbb -M:dev:test   # cognitect test-runner
+kbb -M:dev:run    # offline demo (mock advisor/publisher, MemStore)
 
 # theme 一発で plan work order を製造 (エンジン leg は HOLD、mp4 は作られない):
-clojure -M:dev -m animekaza.produce "桜と始発電車" my-clip 45
-clojure -M:dev -m animekaza.produce --from clips/sakura-densha.edn
+kbb -M:dev -m animekaza.produce "桜と始発電車" my-clip 45
+kbb -M:dev -m animekaza.produce --from clips/sakura-densha.edn
 
 # identity (keyed actor):
-clojure -M:dev -m animekaza.deploy create-account    # createAccount (self-CACAO)
-clojure -M:dev -m animekaza.deploy register-handle   # updateHandle keyed flip
-clojure -M:dev -m animekaza.deploy identify-live     # profile record (rkey self)
+kbb -M:dev -m animekaza.deploy create-account    # createAccount (self-CACAO)
+kbb -M:dev -m animekaza.deploy register-handle   # updateHandle keyed flip
+kbb -M:dev -m animekaza.deploy identify-live     # profile record (rkey self)
 
 # outer loop (tick 消費、registry cadence inactive なので通常 :idle):
-clojure -M:dev -m animekaza.outer-loop status
-clojure -M:dev -m animekaza.outer-loop
+kbb -M:dev -m animekaza.outer-loop status
+kbb -M:dev -m animekaza.outer-loop
 ```
 
 ## clips/ — アニメクリップ設計カタログ (2026-07-16)

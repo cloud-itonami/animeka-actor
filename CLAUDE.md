@@ -52,4 +52,4 @@ metadata のみ）。**エンジン不在を単色フレーム等のフェイク
   NEVER commit a private key。**秘密鍵素材（private-b64）を stdout / ログ /
   セッションログに出力しない**（minidrama で 2026-07-16 に露出事故 →
   鍵ローテーションの実例あり）。
-- `clojure -M:lint`（clj-kondo, errors fail）/ `clojure -M:dev:test`。
+- `kbb -M:lint`（clj-kondo, errors fail）/ `kbb -M:dev:test`。

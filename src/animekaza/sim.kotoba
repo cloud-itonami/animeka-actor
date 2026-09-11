@@ -1,7 +1,7 @@
 (ns animekaza.sim
   "Offline demo: drive two sample clip themes (one clean, one over-budget)
   through the animeka actor on a MemStore + mock advisor + mock publisher
-  (no network). `clojure -M:dev:run`."
+  (no network). `kbb -M:dev:run`."
   (:require [langgraph.graph :as g]
             [animekaza.operation :as op]
             [animekaza.store :as store]
