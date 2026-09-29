@@ -1,7 +1,7 @@
 # animeka-actor
 
 animeka (アニメ家) — AI アニメーションクリップ制作 actor。core contract は
-`README.md`、pattern は full-repo `../../../CLAUDE.md` "Actors" 節
+`README.md`、pattern は full-repo `../../../AGENTS.md` "Actors" 節
 （containment + independent governor + append-only ledger）。
 Superproject decision records:
 `../../../90-docs/adr/2607162200-aozora-creator-scheduled-publishing-integration.md`
