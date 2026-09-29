@@ -8,7 +8,7 @@
   ComfyUI HTTP surface on gad — the SAME graph dougaka calls for live-action,
   here fed clip shot :prompt strings that already carry an \"anime style, ...\"
   prefix (clips/*.edn convention). This is calling an existing shared fleet
-  service, not implementing generation inside the actor (CLAUDE.md invariant
+  service, not implementing generation inside the actor (AGENTS.md invariant
   unaffected — no model code, no GPU code lives here).
 
   Verified 2026-07-17 (superproject 90-docs/gen-quality/gen-quality-ledger.edn,

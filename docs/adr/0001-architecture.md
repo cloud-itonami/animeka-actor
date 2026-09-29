@@ -63,7 +63,7 @@ containment + independent governor + append-only ledger
 - 唯一の `-main` は `animeka.server`（http-kit HTTP サーバ）。`clj/src` に
   ffmpeg / mp4 出力 / フレーム→動画の組み立てはひとつも無い（grep 実測）。
 - 動画の設計上の行き先は kami-cine bridge（`gftd:kami-cine@1.0.0`、
-  stages 1–8 → EXR/mp4）だが、これは engine repo 側 CLAUDE.md の設計記述で
+  stages 1–8 → EXR/mp4）だが、これは engine repo 側 AGENTS.md の設計記述で
   あり animeka の clj runtime からの実行経路は未配線。
 
 何が**無い**か（= HOLD の根拠）:
@@ -140,7 +140,7 @@ ComfyUI HTTP 経由で直接叩く `animekaza.engine` を新設した。
   スコア 0.71（baseline placeholder 0.502 を上回る、実写プロンプト版の
   0.714 とほぼ同水準）。これは**この actor の中に生成を実装している
   わけではない** — dougaka が自分のエンジン repo を呼ぶのと同じ形で、
-  murakumo fleet という既存の共有サービスを呼んでいるだけ（CLAUDE.md
+  murakumo fleet という既存の共有サービスを呼んでいるだけ（AGENTS.md
   「3D はすべて kami-engine」節と同種の「新規エンジンを書かず既存を
   再利用する」原則）。
 - **opt-in・fail-closed**: `ANIMEKA_COMFY_URL` 環境変数が無ければ

@@ -1,6 +1,6 @@
 (ns animekaza.run-tests
   "Test runner for animeka-actor (new actors ship run_tests.clj, not
-  .sh — per etzhayyim/root CLAUDE.md). Canonical path: `kbb -M:dev:test`
+  .sh — per etzhayyim/root AGENTS.md). Canonical path: `kbb -M:dev:test`
   (cognitect test-runner). This runner: `kbb -M -m animekaza.run-tests`."
   (:require [clojure.test :refer [run-tests]]
             [animekaza.governor-contract-test]
